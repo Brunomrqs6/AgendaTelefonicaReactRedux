@@ -1,21 +1,110 @@
-import { Botao, ContatoCard, NomeNumero } from './styles'
+import { useEffect, useState } from 'react'
+import * as S from './styles'
+import { useDispatch } from 'react-redux'
+import { remover, editar } from '../../store/reducers/lista'
+import ListaClass from '../../models/Lista'
+import imagemEditar from '../../images/botao-editar.png'
+import imagemRemover from '../../images/excluir.png'
 
-export const Contatos = () => {
+type Props = ListaClass
+
+export const Contatos = ({
+  email: emailOriginal,
+  nome: nomeOriginal,
+  telefone: telefoneOriginal,
+  id
+}: Props) => {
+  const dispatch = useDispatch()
+  const [estaEditando, setEstaEditando] = useState(false)
+  const [telefone, setTelefone] = useState('')
+  const [nome, setNome] = useState('')
+  const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    if (telefoneOriginal.length > 0) {
+      setTelefone(telefoneOriginal)
+    }
+  }, [telefoneOriginal])
+
+  useEffect(() => {
+    if (nomeOriginal.length > 0) {
+      setNome(nomeOriginal)
+    }
+  }, [nomeOriginal])
+
+  useEffect(() => {
+    if (emailOriginal.length > 0) {
+      setEmail(emailOriginal)
+    }
+  }, [emailOriginal])
+
+  function cancelarEdicao() {
+    setEstaEditando(false)
+    setTelefone(telefoneOriginal)
+    setEmail(emailOriginal)
+    setNome(nomeOriginal)
+  }
+
   return (
-    <ContatoCard>
-      <NomeNumero>
-        <h2>Bruno</h2>
-        <p>61 97400-8472</p>
-      </NomeNumero>
-      <div>
-        <Botao>
-          <img
-            src="src\images\edit_24dp_FILL0_wght400_GRAD0_opsz24.svg"
-            alt=""
-          />
-        </Botao>
-        <button>Remover contato</button>
-      </div>
-    </ContatoCard>
+    <S.ContatoCard>
+      <S.InformaCard>
+        <div>
+          <S.Nome
+            disabled={!estaEditando}
+            value={nome}
+            onChange={(evento) => setNome(evento.target.value)}
+          ></S.Nome>
+          <S.Email
+            disabled={!estaEditando}
+            value={email}
+            onChange={(evento) => setEmail(evento.target.value)}
+          ></S.Email>
+        </div>
+        <div>
+          <S.Telefone
+            disabled={!estaEditando}
+            value={telefone}
+            onChange={(evento) => setTelefone(evento.target.value)}
+          ></S.Telefone>
+        </div>
+      </S.InformaCard>
+      <S.Rodape>
+        {estaEditando ? (
+          <>
+            <S.BotaoSalvar
+              onClick={() => {
+                dispatch(
+                  editar({
+                    nome,
+                    telefone,
+                    email,
+                    id
+                  })
+                )
+                setEstaEditando(false)
+              }}
+            >
+              Salvar
+            </S.BotaoSalvar>
+            <button onClick={cancelarEdicao}>Cancelar</button>
+          </>
+        ) : (
+          <>
+            <S.BotaoEditar
+              title="Editar Contato"
+              onClick={() => setEstaEditando(true)}
+            >
+              <img src={imagemEditar} />
+            </S.BotaoEditar>
+            <S.BotaoRemover
+              title="Excluir Contato"
+              onClick={() => dispatch(remover(id))}
+            >
+              <img src={imagemRemover} />
+            </S.BotaoRemover>
+          </>
+        )}
+      </S.Rodape>
+    </S.ContatoCard>
   )
 }
