@@ -28,6 +28,18 @@ export const Form = styled.form`
   button:hover {
     box-shadow: 3px 3px 3px black;
   }
+
+  #input_telefone {
+    display: block;
+    padding: 6px;
+    border-radius: 8px;
+    width: 206px;
+    text-align: center;
+    margin-bottom: 8px;
+    box-shadow: 2px 2px 2px black;
+    font-weight: bold;
+    border: none;
+  }
 `
 
 export const Titulo = styled.h1`

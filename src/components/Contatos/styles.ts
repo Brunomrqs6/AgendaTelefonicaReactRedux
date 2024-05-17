@@ -7,6 +7,15 @@ export const ContatoCard = styled.div`
   box-shadow: 2px 2px 2px black;
   margin-bottom: 16px;
   background-color: #dfdfdf;
+
+  #input_telefone {
+    font-size: 16px;
+    resize: none;
+    border: none;
+    height: 20px;
+    width: 120px;
+    background-color: #dfdfdf;
+  }
 `
 export const InformaCard = styled.div`
   display: flex;
@@ -40,6 +49,7 @@ export const BotaoSalvar = styled.button`
   border: 1px solid black;
   font-weight: bold;
   cursor: pointer;
+  border: none;
 `
 
 export const BotaoRemover = styled.button`
@@ -83,11 +93,12 @@ export const Email = styled.textarea`
   background-color: #dfdfdf;
 `
 
-export const Telefone = styled.textarea`
-  font-size: 16px;
-  resize: none;
+export const BotaoCancelar = styled.button`
+  background-color: white;
+  border-radius: 4px;
+  padding: 2px 8px;
+  border: 1px solid black;
+  font-weight: bold;
+  cursor: pointer;
   border: none;
-  height: 20px;
-  width: 120px;
-  background-color: #dfdfdf;
 `

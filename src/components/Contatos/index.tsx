@@ -5,6 +5,7 @@ import { remover, editar } from '../../store/reducers/lista'
 import ListaClass from '../../models/Lista'
 import imagemEditar from '../../images/botao-editar.png'
 import imagemRemover from '../../images/excluir.png'
+import InputMask from 'react-input-mask'
 
 type Props = ListaClass
 
@@ -61,11 +62,13 @@ export const Contatos = ({
           ></S.Email>
         </div>
         <div>
-          <S.Telefone
+          <InputMask
+            id="input_telefone"
+            mask="(99) 99999-9999"
             disabled={!estaEditando}
             value={telefone}
             onChange={(evento) => setTelefone(evento.target.value)}
-          ></S.Telefone>
+          ></InputMask>
         </div>
       </S.InformaCard>
       <S.Rodape>
@@ -86,7 +89,7 @@ export const Contatos = ({
             >
               Salvar
             </S.BotaoSalvar>
-            <button onClick={cancelarEdicao}>Cancelar</button>
+            <S.BotaoCancelar onClick={cancelarEdicao}>Cancelar</S.BotaoCancelar>
           </>
         ) : (
           <>

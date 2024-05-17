@@ -3,6 +3,7 @@ import { Botao, Form, Input, PaginaContato, Titulo } from './styles'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { cadastrar } from '../../store/reducers/lista'
+import InputMask from 'react-input-mask'
 
 const CadastroContato = () => {
   const dispatch = useDispatch()
@@ -42,7 +43,9 @@ const CadastroContato = () => {
             type="text"
             placeholder="Email"
           />
-          <Input
+          <InputMask
+            id="input_telefone"
+            mask="(99) 99999-9999"
             value={telefone}
             onChange={(evento) => setTelefone(evento.target.value)}
             type="text"
