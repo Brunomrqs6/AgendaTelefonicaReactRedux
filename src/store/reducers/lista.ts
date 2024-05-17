@@ -7,26 +7,7 @@ type ListaState = {
 }
 
 const initialState: ListaState = {
-  itens: [
-    {
-      nome: 'Bruno Marques',
-      telefone: '(61) 97400-8472',
-      email: 'brunomrqs6@gmail.com',
-      id: 1
-    },
-    {
-      nome: 'Hudson Fernando',
-      telefone: '(61) 97400-8472',
-      email: 'aaaa@gmail.com',
-      id: 2
-    },
-    {
-      nome: 'Leandro Raxixe',
-      telefone: '(61) 97400-8472',
-      email: 'bbb@gmail.com',
-      id: 3
-    }
-  ]
+  itens: []
 }
 
 const listaSlice = createSlice({
